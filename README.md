@@ -1,2 +1,5 @@
 # KINO-SIMKINO
-Simulate the drawing process of Kino OPAP
+
+
+The idea is to run a certain lotteria
+ in a pc machine.
