@@ -265,19 +265,15 @@ def main():
         
         addline(8)
         #print(tarkov,end= ' ')
+        addspace(8)
         newseed = input("NEW SEED: ")
-
-
-        # add error control here
-        # seed = iuser
-        if newseed == 'now':
-            newseed = int(now)
-
         seed.value = newseed
         showseed()
         # print("NEW SEED IS: ", seed)
         addline(15)
 #        waitkey()
+        
+        homecard()
         menu()
 
 # /////////////////////////////////////
@@ -403,12 +399,15 @@ def main():
             showseed()
 
         if (user == 'H' or user == 'h'):
+            cls()
             homecard()
+            menu()
         
         if (user == 'Q' or user == 'q'):
             quit()
         
         if (user == '' or user != ''):
+            cls()
             homecard()
             menu()
         
