@@ -3,6 +3,12 @@
 # Author  : sirGPS
 # PLACE   : N 3518 E 3338 (NICOSIA NE)
 
+
+
+
+
+# CODENAME HOMECARD
+
 #main python kino draw
 
 # use a top bottom aproach at the momment
@@ -430,3 +436,14 @@ def main():
 #call main
     
 main() # * formely mainmenu()
+
+
+
+
+
+
+
+
+
+
+
