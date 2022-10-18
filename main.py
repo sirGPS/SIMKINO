@@ -5,14 +5,8 @@
 
 #main python kino draw
 
-
-
-# // HOMECARD CODENAME
-
 # use a top bottom aproach at the momment
 # and slash towards a bottom to top aproach
-
-
 
 
 
@@ -337,28 +331,38 @@ def main():
         print("STATS")
         addline()
         addspace(8)
-        print("seed:")
-        addline()
-        addspace(8)
+        print("seed:", end=' ')
+        addspace()
         print(seed.value)
+        
         addline()
         addspace(8)
         print("Keywords you can use")
+        
         addline()
         addspace(8)
         print("H: Homecard")
+        
+        addline()
         addspace(8)
         print("P: Panel")
+        
         addspace(8)
         print("D: Draw")
+        
+        addline()
         addspace(8)
         print("S: Show Seed")
         addspace(8)
         print("E: Edit Seed")
+        
+        addline()
         addspace(8)
         print("Q: Quit")
         
-        addline(6)
+        addline(3)
+        
+        
 # /////////////////////////////////////////////////////////
 
     def menu():
@@ -405,6 +409,7 @@ def main():
             quit()
         
         if (user == '' or user != ''):
+            homecard()
             menu()
         
         
