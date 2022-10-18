@@ -315,8 +315,44 @@ def main():
         
         # draw a card
         draw()
-
         
+        
+        
+# /////////////////////////////////////////////////////////
+
+    def homecard():
+        
+        #title
+        addline(4)
+        addspace(8)
+        print("HOME CARD")
+        addline()
+        addspace(8)
+        print("STATS")
+        addline()
+        addspace(8)
+        print("seed:")
+        addline()
+        addspace(8)
+        print(seed.value)
+        addline()
+        addspace(8)
+        print("Keywords you can use")
+        addline()
+        addspace(8)
+        print("H: Homecard")
+        addspace(8)
+        print("P: Panel")
+        addspace(8)
+        print("D: Draw")
+        addspace(8)
+        print("S: Show Seed")
+        addspace(8)
+        print("E: Edit Seed")
+        addspace(8)
+        print("Q: Quit")
+        
+        addline(6)
 # /////////////////////////////////////////////////////////
 
     def menu():
@@ -336,6 +372,7 @@ def main():
 ##        if firstRun is False:
 ##                
 ##        
+
         showsign()
         user = input("")
 
@@ -355,8 +392,8 @@ def main():
             cls()
             showseed()
 
-        if (user == 'W' or user == 'w'):
-            menu()
+        if (user == 'H' or user == 'h'):
+            homecard()
         
         if (user == 'Q' or user == 'q'):
             quit()
@@ -372,7 +409,8 @@ def main():
     
 
     cls()
-    # home card placeholder
+    
+    homecard()
     menu()
 
 
