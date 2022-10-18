@@ -5,8 +5,14 @@
 
 #main python kino draw
 
+
+
+# // HOMECARD CODENAME
+
 # use a top bottom aproach at the momment
 # and slash towards a bottom to top aproach
+
+
 
 
 
