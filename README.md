@@ -1,4 +1,4 @@
-# KINO-SIMKINO
+# SIMKINO
 
 
 The idea is to run a certain lotteria
