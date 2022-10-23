@@ -1,0 +1,14 @@
+SIMKINO PROJECT
+GPS 2022
+
+TODO FILE
+version 1
+
+1 -> RANDOM EQUATION
+TODO: A Custom Random Algorithm for the whole process
+
+2 -> DRAW PROCESS
+TODO: Draw or select several numbers from a pool labeled as Panel;
+
+3 -> PANEL RENDER
+Todo: A pool labeled  as Panel where the wining numbers will be drawn!
