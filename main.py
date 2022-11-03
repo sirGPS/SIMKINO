@@ -7,7 +7,8 @@
 
 
 
-# CODENAME HOMECARD
+# CODENAME USERINPUT
+# DATE 2022 11 03
 
 #main python kino draw
 
@@ -94,6 +95,8 @@ seed = Cseed(11)
 
 
 now = int(time.time())
+dt = datetime.datetime.fromtimestamp(now)
+seed_as_datetime = datetime.datetime.fromtimestamp(seed.value)
 
 
 space = 32
@@ -101,7 +104,7 @@ addline = 13
 
 # TODO: SOMETIME
 # rename tarkov to kino teleprompter
-tarkov = " ~$ "
+tarkov = " KINO$ "
 
 
 
@@ -127,8 +130,13 @@ def main():
         addline()
         addspace(8)
         print("SEED: ",seed.value)
-        addline(5)
-        addline(8)
+        addline()
+        addspace(8)
+        seed_as_datetime = datetime.datetime.fromtimestamp(seed.value)
+        print("SEED AS DATETIME:",seed_as_datetime)
+        addline()
+        
+        
         #waitkey()
         menu()
     
@@ -173,6 +181,10 @@ def main():
         addline()
         addspace(8)
         print("Seed: ",seed.value)
+        addline()
+        addspace(8)
+        seed_as_datetime = datetime.datetime.fromtimestamp(seed.value)
+        print("SEED AS DATETIME:",seed_as_datetime)
 
         addline(2)
         # PRINT number 1 to 80 in a rect
@@ -223,6 +235,10 @@ def main():
         addline()
         addspace(8)
         print("SEED: ",seed.value)
+        addline()
+        addspace(8)
+        seed_as_datetime = datetime.datetime.fromtimestamp(seed.value)
+        print("DATETIME:",seed_as_datetime)
         addline(2)
 
         #define draw
@@ -272,7 +288,7 @@ def main():
         addline(8)
         #print(tarkov,end= ' ')
         addspace(8)
-        newseed = input("NEW SEED: ")
+        newseed = int(input("NEW SEED: "))
         seed.value = newseed
         showseed()
         # print("NEW SEED IS: ", seed)
@@ -281,6 +297,51 @@ def main():
         
         homecard()
         menu()
+        
+        
+    def edittime():
+        
+        addline(8)
+        addspace(8)
+        print("ENTER NEW DATE AND TIME ")
+        addline(8)
+        addspace(8)
+        
+        newyear = int(input("new year: "))
+        addspace(8)
+        newmonth = int(input("new month: "))
+        addspace(8)
+        newday = int(input("new day: "))
+        addspace(8)
+        newhour = int(input("new hour: "))
+        addspace(8)
+        newmin = int(input("new min: "))
+        
+        global user_datetime
+        
+        user_datetime = datetime.datetime(newyear,newmonth,newday,newhour,newmin)
+        
+        addspace(8)
+        #print(user_datetime)
+        addline()
+        
+        unix_timestamp = datetime.datetime.timestamp(user_datetime)
+        
+        addspace(8)
+        #print(int(unix_timestamp))
+        seed.value = int(unix_timestamp)
+        # pass this as UNIX stamp in the seed section
+        
+        #waitkey()
+        # newtime = datetime.datetime.strftime("%y %m %d %H %M")
+        # qdate = newtime
+        # print(qdate)
+        
+        
+        homecard()
+        menu()
+        
+        
 
 # /////////////////////////////////////
 
@@ -337,6 +398,22 @@ def main():
         addspace()
         print(seed.value)
         
+        # DATETIME print
+        """
+        
+        // NOT WORKING AS intended //
+        
+        
+        addline()
+        addspace(8)
+        print("DATETIME: ",end='')
+        print(seed_as_datetime)
+        """
+        
+        
+        
+        
+        
         addline()
         addspace(8)
         print("Keywords you can use")
@@ -357,7 +434,9 @@ def main():
         print("S: Show Seed")
         addspace(8)
         print("E: Edit Seed")
-        
+        addspace(8)
+        print("T: Edit Time")
+                
         addline()
         addspace(8)
         print("Q: Quit")
@@ -386,30 +465,36 @@ def main():
 ##        
 
         showsign()
-        user = input("")
+        userinput = input("")
+        user = userinput.lower()
 
-        if (user == 'D' or user == 'd'):
+        if (user == 'd'):
             cls()
             draw()
-        
-        if (user == 'P' or user == 'p'):
+
+        if (user == 'p'):    
             cls()
             panel()
 
-        if (user == 'E' or user == 'e'):
+        if (user == 'e'):
             cls()
             editseed()
-
-        if (user == 'S' or user == 's'):
+            
+        if (user == 's'):
             cls()
             showseed()
+        
+        if (user == 't'):
+            cls()
+            edittime()   
+        
 
-        if (user == 'H' or user == 'h'):
+        if (user == 'h'):
             cls()
             homecard()
             menu()
         
-        if (user == 'Q' or user == 'q'):
+        if (user == 'q'):
             quit()
         
         if (user == '' or user != ''):
@@ -436,6 +521,7 @@ def main():
 #call main
     
 main() # * formely mainmenu()
+
 
 
 
