@@ -147,6 +147,7 @@ def main():
         
         #waitkey()
         menu()
+        
     
 
     def addline(x = 1):
