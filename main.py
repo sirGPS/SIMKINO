@@ -7,7 +7,7 @@
 
 
 
-# CODENAME USERINPUT
+# CODENAME USERINPUT SHARP
 # DATE 2022 11 03
 
 #main python kino draw
@@ -109,9 +109,17 @@ tarkov = " KINO$ "
 
 
 
+
 # // //////////////////////////////////////////////////////////////////////////
 
+
+
 def main():
+
+    """
+    MAIN FUNCTION IS HERE
+
+    """
 
 
 
@@ -139,6 +147,7 @@ def main():
         
         #waitkey()
         menu()
+        
     
 
     def addline(x = 1):
@@ -194,7 +203,7 @@ def main():
         # declare panel of 80 balls
         panel = ()
         panel = range(1,81)
-
+        # c stands for counter index
         c = 0
 
         # for mule that does the lifting 
@@ -225,6 +234,13 @@ def main():
 
     def draw():
         
+        """
+        Notes on random
+        
+        RANDOM FUNCTION USED IS random.sample()
+        
+        """
+        
 
         # 8 16 24
         
@@ -253,7 +269,7 @@ def main():
         # control the seed
         random.seed(seed.value)
         # control the seed equation
-        draw = random.sample(panel,20)
+        draw = random.sample(panel,20) # RANDOM SAMPLE EQUATION IS USED HERE
         # well sort the balls
         draw.sort()
 
@@ -285,6 +301,19 @@ def main():
 
     def editseed():
         
+        """
+        EDIT SEED
+        
+        Change the seed with
+        a user entered seed
+        
+        TODO:
+        CHANGE the datetime with
+        time
+        
+        
+        """
+        
         addline(8)
         #print(tarkov,end= ' ')
         addspace(8)
@@ -300,6 +329,18 @@ def main():
         
         
     def edittime():
+        
+        
+        """
+        EDIT the TIME
+        
+        Edits the time;
+        sets input to replace the time
+        with a user entered one
+        
+        Also change the seed in the same process
+        
+        """
         
         addline(8)
         addspace(8)
@@ -347,7 +388,7 @@ def main():
 
 
     # draw now is disabled
-    def drawnow():
+    #def drawnow():
 
         """
 
@@ -373,11 +414,11 @@ def main():
 
 
         # this line not work as intended        
-        seed.value = int(now)
+        # seed.value = int(now)
         
         
         # draw a card
-        draw()
+        #draw()
         
         
         
@@ -399,6 +440,7 @@ def main():
         print(seed.value)
         
         # DATETIME print
+        
         """
         
         // NOT WORKING AS intended //
@@ -408,6 +450,7 @@ def main():
         addspace(8)
         print("DATETIME: ",end='')
         print(seed_as_datetime)
+        
         """
         
         
@@ -466,7 +509,7 @@ def main():
 
         showsign()
         userinput = input("")
-        user = userinput.lower()
+        user = userinput.lower() # lowers the input contents
 
         if (user == 'd'):
             cls()
@@ -521,6 +564,7 @@ def main():
 #call main
     
 main() # * formely mainmenu()
+
 
 
 
