@@ -30,14 +30,14 @@
 
 #import sector
 
-import random
 import datetime
+import random
 import time
 from time import sleep
 
-
-
-
+import sys
+import os
+import subprocess
 
 #notes on import
 
@@ -66,37 +66,51 @@ from time import sleep
 #GLOBAL
 
 
-
+# classes
 
 class Cseed:
     """
-    // REMARKS  CLASS Cseed
+    REMARKS  CLASS Cseed
 
-    // SEED is trasformed from variable
-    // to class iteration
+    SEED is trasformed from variable
+    to class iteration
 
     """
 
     def __init__(me,value):
         me.value = value
-        
+
     value = 0
+    oldvalue = 0
+    newvalue = 0
+    as_datetime = 0
 
     def __str__():
         print(me.value)
     
-
     def getseed():
         print(me.value)
-
     
-seed = Cseed(11)
+    def getnewseed():
+        print(me.newvalue)
 
+    def getoldseed():
+        print(me.oldvalue)
 
+    def oldvalue():
+        me.oldvalue = me.value
+  
+    def newvalue():
+        me.value = me.newvalue
+
+seed = Cseed(1669809600)
+
+# Variables
 
 now = int(time.time())
 dt = datetime.datetime.fromtimestamp(now)
-seed_as_datetime = datetime.datetime.fromtimestamp(seed.value)
+user_datetime = 0
+unix_timestamp = 0
 
 
 space = 32
@@ -130,48 +144,67 @@ def main():
 
     
     def showseed():
+        # prints the seed on the screen
+        # keyword is W
+
         # 8 16 24
         addline(8)
-        #print(tarkov,end= ' ')
         addspace(8)
+        
         print("SEED CARD")
-        addline()
+
+        addline(3)
         addspace(8)
+
         print("SEED: ",seed.value)
+
         addline()
         addspace(8)
-        seed_as_datetime = datetime.datetime.fromtimestamp(seed.value)
-        print("SEED AS DATETIME:",seed_as_datetime)
-        addline()
+
+        # print the datetime from seed
+
+        seed.as_datetime = datetime.datetime.fromtimestamp(seed.value)
+        print("DATETIME:",seed.as_datetime)
+
+        addline(8)
         
-        
-        #waitkey()
         menu()
         
     
 
     def addline(x = 1):
+        # adds enter line feature
         for x in range(x):
             print(chr(13))
             #print('\n')
-            x = x + 1
+            x += 1
             
         
     def addspace(x = 1):
+        # adds space char
         for x in range(x):
             print(chr(32),sep = '',end = '' )
-            x = x + 1
+            x += 1
 
     def showsign():
+        # KIA FUN 
         print(tarkov,end= ' ')
+        # update time
+        LetTimeUpdate = True
+        if LetTimeUpdate == True:
+            now = time.time()
+            print('>>',end='')
+        else:
+            print('%%',end='')
 
     # clear the screen
     def cls():
         addline(25)
     
-    def waitkey():
+    #def waitkey():
         # hold execution
-        user = input("Press any key...")
+        # UNUSED
+     #   user = input("Press any key...")
         
         
 # /////////////////////////////////////
@@ -192,8 +225,8 @@ def main():
         print("Seed: ",seed.value)
         addline()
         addspace(8)
-        seed_as_datetime = datetime.datetime.fromtimestamp(seed.value)
-        print("SEED AS DATETIME:",seed_as_datetime)
+        seed.as_datetime = datetime.datetime.fromtimestamp(seed.value)
+        print("SEED AS DATETIME:",seed.as_datetime)
 
         addline(2)
         # PRINT number 1 to 80 in a rect
@@ -221,8 +254,8 @@ def main():
                     addline()
                     c = 0    
             print(x,sep = '',end=' ')
-            x = x + 1
-            c = c + 1
+            x += 1
+            c += 1
             
             
         addline(4)
@@ -231,9 +264,12 @@ def main():
 
 
 # /////////////////////////////////////
+# DRAW
 
     def draw():
         
+        # draw list will renamed as winning_card
+
         """
         Notes on random
         
@@ -253,41 +289,50 @@ def main():
         print("SEED: ",seed.value)
         addline()
         addspace(8)
-        seed_as_datetime = datetime.datetime.fromtimestamp(seed.value)
-        print("DATETIME:",seed_as_datetime)
+        seed.as_datetime = datetime.datetime.fromtimestamp(int(seed.value))
+        print("DATETIME:",seed.as_datetime)
         addline(2)
 
         #define draw
 
         # temp pool for draw in order to draw
-        panel = ()
+        drawing_panel = []
         # 80 balls its kino
-        panel = range(1,81)
+        #drawing_panel = range(1,81)
+        for drawable_number in range(1,81):
+            drawing_panel.append(drawable_number)
 
         
-        draw = []
+        winning_card = []
         # control the seed
         random.seed(seed.value)
+
         # control the seed equation
-        draw = random.sample(panel,20) # RANDOM SAMPLE EQUATION IS USED HERE
+        #draw = random.sample(panel,20) # RANDOM SAMPLE EQUATION IS USED HERE
+
+        for drawed_number in range(1,21):
+            drawed_number = random.choice(drawing_panel)
+            winning_card.append(drawed_number)
+            drawing_panel.remove(drawed_number)
+
         # well sort the balls
-        draw.sort()
+        winning_card.sort()
 
-
-        c = 1
-        for x in draw:
+        # format the winning card
+        counter = 1
+        for drawed_number in winning_card:
 
             # make single digits use 2 positions 
-            if x < 10:
+            if drawed_number < 10:
                 addspace()
 
             # every 10th number, go next line
-            if c == 11:
+            if counter == 11:
                 addline()
-                c = 1
+                counter = 1
                 
-            print(x,sep = ' ', end = ' ')
-            c = c + 1
+            print(drawed_number,sep = ' ', end = ' ')
+            counter += 1
 
                 
 
@@ -308,22 +353,68 @@ def main():
         a user entered seed
         
         TODO:
+
+
         CHANGE the datetime with
         time
-        
+
+        ISSUE #5
+        IncompatableInput #5
         
         """
         
         addline(8)
-        #print(tarkov,end= ' ')
         addspace(8)
-        newseed = int(input("NEW SEED: "))
-        seed.value = newseed
-        showseed()
-        # print("NEW SEED IS: ", seed)
-        addline(15)
-#        waitkey()
+
+        # put current seed to old seed var
         
+        seed.oldseed = seed.value
+        if seed.oldseed == seed.value:
+            print('$')
+        else:
+            print('%')
+        
+
+
+            
+
+        # ?set something to true
+
+        addline()
+        userseed = input("NEW SEED: ")
+        
+        # lista = []
+
+        
+        #userx = [' '.join(format(ord(x), 'x') for x in userx)]
+        #seed.newvalue = userx[0]
+
+        #lista.append(user)
+        
+        # ISOlate the 'numbers'
+        # from the rest of ascii
+
+
+        # INPUT IS BUGGY # FIX FIX FIX
+        # ISSUE 5 -> CHECKS NEEDED
+
+        #if (user > 0b00101001 or user < 0b00111010):
+        #    seed.newvalue = user
+        #    seed.value = seed.newvalue
+        #else:
+        #    seed.value = seed.oldvalue
+
+
+        seed.newvalue = userseed
+        seed.value = seed.newvalue
+        # ?set something to true
+
+        # Pass the seed value to timestamp
+        seed.as_datetime = datetime.datetime.fromtimestamp(int(seed.value))
+
+
+        addline(15)
+        cls()
         homecard()
         menu()
         
@@ -344,7 +435,9 @@ def main():
         
         addline(8)
         addspace(8)
+
         print("ENTER NEW DATE AND TIME ")
+
         addline(8)
         addspace(8)
         
@@ -358,12 +451,11 @@ def main():
         addspace(8)
         newmin = int(input("new min: "))
         
-        global user_datetime
+     
         
         user_datetime = datetime.datetime(newyear,newmonth,newday,newhour,newmin)
         
         addspace(8)
-        #print(user_datetime)
         addline()
         
         unix_timestamp = datetime.datetime.timestamp(user_datetime)
@@ -474,7 +566,7 @@ def main():
         
         addline()
         addspace(8)
-        print("S: Show Seed")
+        print("W: Show Seed")
         addspace(8)
         print("E: Edit Seed")
         addspace(8)
@@ -483,6 +575,9 @@ def main():
         addline()
         addspace(8)
         print("Q: Quit")
+        addline()
+        addspace(8)
+        print("R: Restart")
         
         addline(3)
         
@@ -507,6 +602,7 @@ def main():
 ##                
 ##        
 
+
         showsign()
         userinput = input("")
         user = userinput.lower() # lowers the input contents
@@ -523,7 +619,7 @@ def main():
             cls()
             editseed()
             
-        if (user == 's'):
+        if (user == 'w'):
             cls()
             showseed()
         
@@ -539,6 +635,10 @@ def main():
         
         if (user == 'q'):
             quit()
+
+        if (user == 'r'):
+            print('RESTARTING...')
+            subprocess.call([sys.executable, os.path.realpath(__file__)] + sys.argv[1:])
         
         if (user == '' or user != ''):
             cls()
