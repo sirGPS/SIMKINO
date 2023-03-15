@@ -6,7 +6,9 @@ DOCSTRING PLACEHOLDER
 
 """
 
+MODULE_IS_READ = 0
 
+MODULE_IS_READ = MODULE_IS_READ + 1
 
 # Project : KINO SIMULATOR
 # date    : 2022 10 12
@@ -32,7 +34,7 @@ DOCSTRING PLACEHOLDER
 
 # clean up
 
-
+import krandom
 # import sector
 import datetime
 import random
@@ -41,6 +43,7 @@ import time
 import sys
 import os
 import subprocess
+
 
 # notes on import
 
@@ -78,32 +81,29 @@ class Cseed:
     to class iteration
 
     """
-
     def __init__(self, value):
         self.value = value
     value = 0
     oldvalue = 0
     newvalue = 0
     as_datetime = 0
-
     def __str__():
         print(self.value)
 
-    def getseed():
+    def getseed(self):
         print(self.value)
 
-    def getnewseed():
+    def getnewseed(self):
         print(self.newvalue)
 
-    def getoldseed():
+    def getoldseed(self):
         print(self.oldvalue)
 
-    def oldvalue():
+    def oldvalue(self):
         self.oldvalue = self.value
 
-    def newvalue():
+    def newvalue(self):
         self.value = self.newvalue
-
 
 seed = Cseed(1669809600)
 # Variables
@@ -111,8 +111,8 @@ now = int(time.time())
 dt = datetime.datetime.fromtimestamp(now)
 user_datetime = 0
 unix_timestamp = 0
-space = 32
-addline = 13
+# space = 32
+# addline = 13
 # TODO: SOMETIME
 # rename tarkov to kino teleprompter
 tarkov = " KINO$ "
@@ -126,6 +126,16 @@ def main():
     """
 # /////////////////////////////////////
     # $ functions are fun!
+    def fake_random(xseed = 5,modulus = 10 ,increment = 5,multip = 3):
+        """ PSEVDORANDOM GENERATOR """
+        fake_random_isREAD = 0
+        fake_random_isREAD = fake_random_isREAD + 1
+        while True:
+            xseed = (multip * xseed + increment) % modulus
+            yield xseed
+            print("FAKE_RANDOM SEED:",xseed)
+
+
     def showseed():
         # prints the seed on the screen
         # keyword is W
@@ -274,7 +284,7 @@ def main():
         addline(8)
 #        waitkey()
         menu()
-# /////////////////////////////////////
+# -----------------------------------------------
     def editseed():
         """
         EDIT SEED
@@ -319,6 +329,7 @@ def main():
         cls()
         homecard()
         menu()
+# -----------------------------------------------
     def edittime():
         """
         EDIT the TIME
@@ -326,6 +337,12 @@ def main():
         sets input to replace the time
         with a user entered one
         Also change the seed in the same process
+        //
+        make when you have values already 
+        to accept them
+        //
+        accept previews value when
+        press enter
         """
         addline(8)
         addspace(8)
@@ -341,7 +358,7 @@ def main():
         newhour = int(input("new hour: "))
         addspace(8)
         newmin = int(input("new min: "))
-        user_datetime = datetime.datetime(
+        new_user_datetime = datetime.datetime(
             newyear, newmonth, newday, newhour, newmin)
         addspace(8)
         addline()
@@ -356,7 +373,7 @@ def main():
         # print(qdate)
         homecard()
         menu()
-# /////////////////////////////////////
+# -----------------------------------------------
 # draw now is disabled
 # def drawnow():
 # """         """
@@ -380,7 +397,7 @@ def main():
 
         # draw a card
         # draw()
-# /////////////////////////////////////////////////////////
+# -----------------------------------------------
     def homecard():
         # title
         addline(4)
@@ -427,8 +444,7 @@ def main():
         addspace(8)
         print("R: Restart")
         addline(3)
-# /////////////////////////////////////////////////////////
-
+# -----------------------------------------------
     def menu():
         # get on git
         # Add first run check
@@ -442,6 +458,9 @@ def main():
         showsign()
         userinput = input("")
         user = userinput.lower()  # lowers the input contents
+        if (user == 'x'):
+            krandom.fake_print()
+            krandom.fake_random()
         if (user == 'd'):
             cls()
             draw()
@@ -471,11 +490,12 @@ def main():
             cls()
             homecard()
             menu()
+
     cls()
     homecard()
     menu()
 
 
-# /////////////////////////////////////////////////////////////////////////////
+# -----------------------------------------------
 # call main
 main()  # * formely mainmenu()
