@@ -12,3 +12,6 @@ TODO: Draw or select several numbers from a pool labeled as Panel;
 
 3 -> PANEL RENDER
 Todo: A pool labeled  as Panel where the wining numbers will be drawn!
+
+4 -> SEED UNIX TIMESTAMP FORMAT
+TODO: Use the milliseconds format to be in par with opap kino system
