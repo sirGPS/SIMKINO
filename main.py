@@ -105,7 +105,7 @@ class Cseed:
     def newvalue(self):
         self.value = self.newvalue
 
-seed = Cseed(1669809600)
+seed = Cseed(1067853600000)
 # Variables
 now = int(time.time())
 dt = datetime.datetime.fromtimestamp(now)
