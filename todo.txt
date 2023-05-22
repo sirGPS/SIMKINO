@@ -15,3 +15,6 @@ Todo: A pool labeled  as Panel where the wining numbers will be drawn!
 
 4 -> SEED UNIX TIMESTAMP FORMAT
 TODO: Use the milliseconds format to be in par with opap kino system
+
+5 -> ECHO NOW VALUE
+TODO: output to console the now value for testing purpuses
