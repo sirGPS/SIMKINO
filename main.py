@@ -36,6 +36,7 @@ MODULE_IS_READ = MODULE_IS_READ + 1
 
 import krandom
 # import sector
+import secrets
 import datetime
 import random
 import time
@@ -459,8 +460,9 @@ def main():
         userinput = input("")
         user = userinput.lower()  # lowers the input contents
         if (user == 'x'):
-            krandom.fake_print()
-            krandom.fake_random()
+            #krandom.fake_print()
+            #krandom.fake_random()
+            krandom.fake_fortuna()
         if (user == 'd'):
             cls()
             draw()
