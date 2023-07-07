@@ -11,13 +11,13 @@ MODULE_IS_READ = 0
 MODULE_IS_READ = MODULE_IS_READ + 1
 
 # Project : KINO SIMULATOR
-# date    : 2022 10 12
+# date    : 2023 07 07
 # Author  : sirGPS
 # PLACE   : N 3518 E 3338 (NICOSIA NE)
 
 
-# CODENAME HOT COFFEE
-# DATE 2022 12 04
+# CODENAME DEEP SPACE
+# DATE 2023 07 07
 
 # main python kino draw
 
@@ -106,7 +106,7 @@ class Cseed:
     def newvalue(self):
         self.value = self.newvalue
 
-seed = Cseed(1067853600000)
+seed = Cseed(1067853600)
 # Variables
 now = int(time.time())
 dt = datetime.datetime.fromtimestamp(now)
@@ -116,7 +116,7 @@ unix_timestamp = 0
 # addline = 13
 # TODO: SOMETIME
 # rename tarkov to kino teleprompter
-tarkov = " KINO$ "
+tarkov = "  KINO$ "
 # // //////////////////////////////////////////////////////////////////////////
 
 
@@ -127,7 +127,7 @@ def main():
     """
 # /////////////////////////////////////
     # $ functions are fun!
-    def fake_random(xseed = 5,modulus = 10 ,increment = 5,multip = 3):
+    def fake_random(xseed = 1686495900,modulus = 47 ,increment = 5,multip = 3):
         """ PSEVDORANDOM GENERATOR """
         fake_random_isREAD = 0
         fake_random_isREAD = fake_random_isREAD + 1
@@ -173,9 +173,9 @@ def main():
         time_update = True
         if time_update is True:
             now = time.time()
-            print('>>', end='')
+            print('', end='')
         else:
-            print('%%', end='')
+            print('', end='')
     # clear the screen
     def cls():
         addline(25)
@@ -307,7 +307,13 @@ def main():
             print('%')
         # ?set something to true
         addline()
-        userseed = input("NEW SEED: ")
+        addspace(8)
+        print("ENTER NEW SEED")
+        addline(4)
+        try:
+            userseed = input("NEW SEED: ")
+        finally:
+            userseed = 1067853600
         # lista = []
         # userx = [' '.join(format(ord(x), 'x') for x in userx)]
         # seed.newvalue = userx[0]
@@ -345,25 +351,65 @@ def main():
         accept previews value when
         press enter
         """
+        #revamb needed
+
+        # datetime get
+        old_datetime = time.time()
+        old_datetime = datetime.datetime.fromtimestamp(old_datetime)
+        print("OLD_DATETIME: ",old_datetime)
+        print("\nOLD_MINUTE:", old_datetime.minute)
+        #
+        #datetime.datetime()
+
+        oldyear = old_datetime.year
+        oldmonth = old_datetime.month
+        oldday = old_datetime.day
+        oldhour = old_datetime.hour
+        oldmin = old_datetime.minute
+
+        # do finish with intervals of 5 minutes
         addline(8)
         addspace(8)
         print("ENTER NEW DATE AND TIME ")
         addline(8)
         addspace(8)
-        newyear = int(input("new year: "))
+        try:
+            newyear = int(input(f"new year ({oldyear}): "))
+        except:
+            newyear = int(oldyear)
         addspace(8)
-        newmonth = int(input("new month: "))
+        try:
+            newmonth = int(input(f"new month ({oldmonth}): "))
+        except:
+            newmonth = int(oldmonth)
         addspace(8)
-        newday = int(input("new day: "))
+        try:
+            newday = int(input(f"new day ({oldday}): "))
+        except:
+            newday = int(oldday)
         addspace(8)
-        newhour = int(input("new hour: "))
+        try:
+            newhour = int(input(f"new hour ({oldhour}): "))
+        except:
+            newhour = int(oldhour)
         addspace(8)
-        newmin = int(input("new min: "))
+        try:
+            newmin = int(input(f"new min ({oldmin}):  "))
+        except:
+            if (oldmin > 55):
+                oldmin = 0
+                oldhour = oldhour + 1
+            else:
+                if oldmin / 5 == range(0,11):
+                    oldmin = (abs(int(oldmin))*5)
+                else:
+                    oldmin = (abs(int(oldmin/5))*5)+5
+            newmin = int(oldmin)
         new_user_datetime = datetime.datetime(
             newyear, newmonth, newday, newhour, newmin)
         addspace(8)
         addline()
-        unix_timestamp = datetime.datetime.timestamp(user_datetime)
+        unix_timestamp = datetime.datetime.timestamp(new_user_datetime)
         addspace(8)
         # print(int(unix_timestamp))
         seed.value = int(unix_timestamp)
@@ -444,6 +490,9 @@ def main():
         addline()
         addspace(8)
         print("R: Restart")
+        addline()
+        addspace(8)
+        print("X: SECRET RANDOM FUNCTION")
         addline(3)
 # -----------------------------------------------
     def menu():
@@ -460,9 +509,16 @@ def main():
         userinput = input("")
         user = userinput.lower()  # lowers the input contents
         if (user == 'x'):
+            cls()
+            print("SECRET RANDOM FUNCTION TEST")
+            addline(3)
             #krandom.fake_print()
-            #krandom.fake_random()
+            addline(2)
+            krandom.fake_random()
+            addline(2)
             krandom.fake_fortuna()
+            addline(8)
+            menu()
         if (user == 'd'):
             cls()
             draw()
@@ -492,7 +548,6 @@ def main():
             cls()
             homecard()
             menu()
-
     cls()
     homecard()
     menu()
