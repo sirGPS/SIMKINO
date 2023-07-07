@@ -34,6 +34,10 @@ MODULE_IS_READ = MODULE_IS_READ + 1
 
 # clean up
 
+# ------------------------------------------
+# IMPORT
+# ------------------------------------------
+
 import krandom
 # import sector
 import secrets
@@ -72,7 +76,11 @@ import subprocess
 # GLOBAL
 
 
-# classes
+
+
+# ------------------------------------------
+# CLASSES
+# ------------------------------------------
 
 class Cseed:
     """
@@ -106,7 +114,13 @@ class Cseed:
     def newvalue(self):
         self.value = self.newvalue
 
+# ------------------------------------------
+# VARIABLES
+# ------------------------------------------
+
+
 seed = Cseed(1067853600)
+
 # Variables
 now = int(time.time())
 dt = datetime.datetime.fromtimestamp(now)
@@ -116,17 +130,26 @@ unix_timestamp = 0
 # addline = 13
 # TODO: SOMETIME
 # rename tarkov to kino teleprompter
-tarkov = "  KINO$ "
-# // //////////////////////////////////////////////////////////////////////////
+
+tarkov = "~$"
 
 
+
+
+# ------------------------------------------
+# MAIN
+# ------------------------------------------
 def main():
     """
     MAIN FUNCTION IS HERE
 
     """
-# /////////////////////////////////////
-    # $ functions are fun!
+
+
+
+# ------------------------------------------
+# FAKE RANDOM
+# ------------------------------------------
     def fake_random(xseed = 1686495900,modulus = 47 ,increment = 5,multip = 3):
         """ PSEVDORANDOM GENERATOR """
         fake_random_isREAD = 0
@@ -136,7 +159,9 @@ def main():
             yield xseed
             print("FAKE_RANDOM SEED:",xseed)
 
-
+# ------------------------------------------
+# SHOW SEED
+# ------------------------------------------
     def showseed():
         # prints the seed on the screen
         # keyword is W
@@ -155,17 +180,29 @@ def main():
         addline(8)
         menu()
 
+# ------------------------------------------
+# ADDLINE
+# ------------------------------------------
+
     def addline(line_counter=1):
         # adds enter line feature
         for line_counter in range(line_counter):
             print(chr(13))
             # print('\n')
             line_counter += 1
+
+
+# ------------------------------------------
+# ADDSPACE
+# ------------------------------------------
     def addspace(space_counter=1):
         # adds space char
         for space_counter in range(space_counter):
             print(chr(32), sep='', end='')
             space_counter += 1
+# ------------------------------------------
+# SHOWSIGN
+# ------------------------------------------            
     def showsign():
         # KIA FUN
         print(tarkov, end=' ')
@@ -176,6 +213,11 @@ def main():
             print('', end='')
         else:
             print('', end='')
+
+
+# ------------------------------------------
+# CLS
+# ------------------------------------------
     # clear the screen
     def cls():
         addline(25)
@@ -183,7 +225,9 @@ def main():
         # hold execution
         # UNUSED
      #   user = input("Press any key...")
-# /////////////////////////////////////
+# ------------------------------------------
+# PANEL
+# ------------------------------------------
     def panel():
         # add breathing space
         # title
@@ -229,8 +273,9 @@ def main():
         addline(4)
  #       waitkey()
         menu()
-# /////////////////////////////////////
+# ------------------------------------------
 # DRAW
+# ------------------------------------------
     def draw():
         # draw list will renamed as winning_card
         """
@@ -285,7 +330,9 @@ def main():
         addline(8)
 #        waitkey()
         menu()
-# -----------------------------------------------
+# ------------------------------------------
+# EDIT SEED
+# ------------------------------------------
     def editseed():
         """
         EDIT SEED
@@ -297,6 +344,7 @@ def main():
         ISSUE #5
         IncompatableInput #5
         """
+
         addline(8)
         addspace(8)
         # put current seed to old seed var
@@ -314,6 +362,8 @@ def main():
             userseed = input("NEW SEED: ")
         finally:
             userseed = 1067853600
+
+
         # lista = []
         # userx = [' '.join(format(ord(x), 'x') for x in userx)]
         # seed.newvalue = userx[0]
@@ -327,16 +377,24 @@ def main():
         #    seed.value = seed.newvalue
         # else:
         #    seed.value = seed.oldvalue
+
+
         seed.newvalue = userseed
         seed.value = seed.newvalue
+
+
         # ?set something to true
         # Pass the seed value to timestamp
+
+
         seed.as_datetime = datetime.datetime.fromtimestamp(int(seed.value))
         addline(15)
         cls()
         homecard()
         menu()
-# -----------------------------------------------
+# ------------------------------------------
+# EDIT TIME
+# ------------------------------------------
     def edittime():
         """
         EDIT the TIME
@@ -351,13 +409,14 @@ def main():
         accept previews value when
         press enter
         """
+
         #revamb needed
 
         # datetime get
         old_datetime = time.time()
         old_datetime = datetime.datetime.fromtimestamp(old_datetime)
-        print("OLD_DATETIME: ",old_datetime)
-        print("\nOLD_MINUTE:", old_datetime.minute)
+        #print("OLD_DATETIME: ",old_datetime)
+        #print("\nOLD_MINUTE:", old_datetime.minute)
         #
         #datetime.datetime()
 
@@ -407,21 +466,32 @@ def main():
             newmin = int(oldmin)
         new_user_datetime = datetime.datetime(
             newyear, newmonth, newday, newhour, newmin)
+        user_datetime = datetime.datetime.timestamp(new_user_datetime)
         addspace(8)
         addline()
         unix_timestamp = datetime.datetime.timestamp(new_user_datetime)
         addspace(8)
+
+
         # print(int(unix_timestamp))
+
+
         seed.value = int(unix_timestamp)
+
+
         # pass this as UNIX stamp in the seed section
         # waitkey()
         # newtime = datetime.datetime.strftime("%y %m %d %H %M")
         # qdate = newtime
         # print(qdate)
+
+
         homecard()
         menu()
-# -----------------------------------------------
-# draw now is disabled
+
+# ------------------------------------------
+# DRAW-NOW DEFUCT
+# ------------------------------------------
 # def drawnow():
 # """         """
 #         function drawnow does this
@@ -444,7 +514,11 @@ def main():
 
         # draw a card
         # draw()
-# -----------------------------------------------
+
+
+# ------------------------------------------
+# HOMECARD
+# ------------------------------------------
     def homecard():
         # title
         addline(4)
@@ -455,18 +529,14 @@ def main():
         print("STATS")
         addline()
         addspace(8)
-        print("seed:", end=' ')
-        addspace()
-        print(seed.value)
-        # DATETIME print
-        """
-        // NOT WORKING AS intended //
+        print(f"seed: {seed.value}", end=' ')
         addline()
         addspace(8)
-        print("DATETIME: ",end='')
-        print(seed_as_datetime)
-        """
-        addline()
+        seed.as_datetime = datetime.datetime.fromtimestamp(seed.value)
+        print(f"Datetime: {seed.as_datetime}")
+     
+  
+        addline(2)
         addspace(8)
         print("Keywords you can use")
         addline()
@@ -494,7 +564,9 @@ def main():
         addspace(8)
         print("X: SECRET RANDOM FUNCTION")
         addline(3)
-# -----------------------------------------------
+# ------------------------------------------
+# MENU
+# ------------------------------------------
     def menu():
         # get on git
         # Add first run check
@@ -553,6 +625,8 @@ def main():
     menu()
 
 
-# -----------------------------------------------
+# ------------------------------------------
+# MAIN
+# ------------------------------------------
 # call main
 main()  # * formely mainmenu()
