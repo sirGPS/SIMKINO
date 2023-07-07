@@ -455,14 +455,13 @@ def main():
         try:
             newmin = int(input(f"new min ({oldmin}):  "))
         except:
-            if (oldmin > 55):
-                oldmin = 0
-                oldhour = oldhour + 1
+            if oldmin / 5 == range(0,11):
+                oldmin = (abs(int(oldmin))*5)
             else:
-                if oldmin / 5 == range(0,11):
-                    oldmin = (abs(int(oldmin))*5)
-                else:
-                    oldmin = (abs(int(oldmin/5))*5)+5
+                oldmin = (abs(int(oldmin/5))*5)+5
+                if (oldmin > 55):
+                    oldmin = 0
+                    oldhour = oldhour + 1
             newmin = int(oldmin)
         new_user_datetime = datetime.datetime(
             newyear, newmonth, newday, newhour, newmin)
