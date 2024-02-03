@@ -39,6 +39,7 @@ MODULE_IS_READ = MODULE_IS_READ + 1
 # ------------------------------------------
 
 import krandom
+import poppanel
 # import sector
 import secrets
 import datetime
@@ -119,7 +120,9 @@ class Cseed:
 # ------------------------------------------
 
 
-seed = Cseed(1067853600)
+first_draw = 1067855400
+
+seed = Cseed(first_draw) # time of first draw
 
 # Variables
 now = int(time.time())
@@ -361,33 +364,9 @@ def main():
         try:
             userseed = input("NEW SEED: ")
         finally:
-            userseed = 1067853600
-
-
-        # lista = []
-        # userx = [' '.join(format(ord(x), 'x') for x in userx)]
-        # seed.newvalue = userx[0]
-        # lista.append(user)
-        # ISOlate the 'numbers'
-        # from the rest of ascii
-        # INPUT IS BUGGY # FIX FIX FIX
-        # ISSUE 5 -> CHECKS NEEDED
-        # if (user > 0b00101001 or user < 0b00111010):
-        #    seed.newvalue = user
-        #    seed.value = seed.newvalue
-        # else:
-        #    seed.value = seed.oldvalue
-
-
-        seed.newvalue = userseed
-        seed.value = seed.newvalue
-
-
-        # ?set something to true
-        # Pass the seed value to timestamp
-
-
-        seed.as_datetime = datetime.datetime.fromtimestamp(int(seed.value))
+            userseed = first_draw
+        #unix_ts = userseed
+        #seed.as_datetime = datetime.datetime.timestamp(unix_ts)
         addline(15)
         cls()
         homecard()
@@ -519,6 +498,9 @@ def main():
 # HOMECARD
 # ------------------------------------------
     def homecard():
+        """
+        Dress of the menu system
+        """
         # title
         addline(4)
         addspace(8)
@@ -562,20 +544,19 @@ def main():
         addline()
         addspace(8)
         print("X: SECRET RANDOM FUNCTION")
+        addline()
+        addspace(8)
+        print("L: Show Last and Active KINO Draw")
         addline(3)
+        
 # ------------------------------------------
 # MENU
 # ------------------------------------------
     def menu():
-        # get on git
-        # Add first run check
-        # if firstRun is True:
-        # firstRun = False
-        # cls()
-        ##
-        # if firstRun is False:
-        ##
-        ##
+        """
+        Logic to the menu system
+
+        """      
         showsign()
         userinput = input("")
         user = userinput.lower()  # lowers the input contents
@@ -587,7 +568,7 @@ def main():
             addline(2)
             krandom.fake_random()
             addline(2)
-            krandom.fake_fortuna()
+            #krandom.fake_fortuna()
             addline(8)
             menu()
         if (user == 'd'):
@@ -605,6 +586,13 @@ def main():
         if (user == 't'):
             cls()
             edittime()
+        if (user == 'l'):
+            addline()
+            print("KINO: Last Draw and Active Draw")
+            addline(3)
+            poppanel.popPanel()
+            addline(3)
+            prompt = input("Return...") # press any key..
         if (user == 'h'):
             cls()
             homecard()
