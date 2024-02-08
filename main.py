@@ -1,39 +1,22 @@
 """
 KINO SIMULATOR
 DOCSTRING PLACEHOLDER
-
-
-
 """
-
 MODULE_IS_READ = 0
-
 MODULE_IS_READ = MODULE_IS_READ + 1
-
 # Project : KINO SIMULATOR
 # date    : 2023 07 07
 # Author  : sirGPS
 # PLACE   : N 3518 E 3338 (NICOSIA NE)
-
-
 # CODENAME DEEP SPACE
 # DATE 2023 07 07
-
 # main python kino draw
-
 # use a top bottom aproach at the momment
 # and slash towards a bottom to top aproach
-
-
 # main kino draw
-
-
 # B2T (bottom 2 top aproach acronyme)
 # issue variables not changing at runtime
-
-
 # clean up
-
 # ------------------------------------------
 # IMPORT
 # ------------------------------------------
@@ -49,81 +32,51 @@ import time
 import sys
 import os
 import subprocess
-
-
 # notes on import
-
 # notes on random
 # i need random module to be imported to able generate the random numbers
-
 # notes on datetime
 # i need datetime so I can convert UNIX time
-
 # notes on time
 # I need time module to access UNIX time and use it in RANDOM SEED
-
-
 # exit the RUNTIME by using quit()
-
 # mainmenu()
-
 # KINO DATA
-
 # KINO has PANEL with 80 numbers
-
 # DRAW 'draws' 20 numbers from PANEL
-
-
 # GLOBAL
-
-
-
-
 # ------------------------------------------
 # CLASSES
 # ------------------------------------------
-
 class Cseed:
     """
     REMARKS  CLASS Cseed
-
     SEED is trasformed from variable
     to class iteration
-
     """
     def __init__(self, value):
         self.value = value
     value = 0
     oldvalue = 0
     newvalue = 0
-    as_datetime = 0
+    as_datetime = ""
     def __str__():
         print(self.value)
-
     def getseed(self):
         print(self.value)
-
     def getnewseed(self):
         print(self.newvalue)
-
     def getoldseed(self):
         print(self.oldvalue)
-
     def oldvalue(self):
         self.oldvalue = self.value
-
     def newvalue(self):
         self.value = self.newvalue
-
 # ------------------------------------------
 # VARIABLES
 # ------------------------------------------
-
-
 first_draw = 1067855400
-
 seed = Cseed(first_draw) # time of first draw
-
 # Variables
 now = int(time.time())
 dt = datetime.datetime.fromtimestamp(now)
@@ -133,12 +86,7 @@ unix_timestamp = 0
 # addline = 13
 # TODO: SOMETIME
 # rename tarkov to kino teleprompter
-
 tarkov = "~$"
-
-
-
-
 # ------------------------------------------
 # MAIN
 # ------------------------------------------
@@ -147,9 +95,6 @@ def main():
     MAIN FUNCTION IS HERE
 
     """
-
-
-
 # ------------------------------------------
 # FAKE RANDOM
 # ------------------------------------------
@@ -161,7 +106,6 @@ def main():
             xseed = (multip * xseed + increment) % modulus
             yield xseed
             print("FAKE_RANDOM SEED:",xseed)
-
 # ------------------------------------------
 # SHOW SEED
 # ------------------------------------------
@@ -182,19 +126,15 @@ def main():
         print("DATETIME:", seed.as_datetime)
         addline(8)
         menu()
-
 # ------------------------------------------
 # ADDLINE
 # ------------------------------------------
-
     def addline(line_counter=1):
         # adds enter line feature
         for line_counter in range(line_counter):
             print(chr(13))
             # print('\n')
             line_counter += 1
-
-
 # ------------------------------------------
 # ADDSPACE
 # ------------------------------------------
@@ -216,8 +156,6 @@ def main():
             print('', end='')
         else:
             print('', end='')
-
-
 # ------------------------------------------
 # CLS
 # ------------------------------------------
@@ -279,7 +217,7 @@ def main():
 # ------------------------------------------
 # DRAW
 # ------------------------------------------
-    def draw():
+    def draw2():
         # draw list will renamed as winning_card
         """
         Notes on random
@@ -333,6 +271,62 @@ def main():
         addline(8)
 #        waitkey()
         menu()
+
+    def draw():
+        # function added on 2024 02 08 15:37
+        addline(8)
+        addspace(8)
+        print("Draw ""Winning"" Card")
+        addline()
+        addspace(8)
+        print(f"Seed is:{seed.value}")
+        addline()
+        addspace(8)
+        seed.as_datetime = datetime.datetime.fromtimestamp(int(seed.value))
+        print(f"Datetime is:{seed.as_datetime}")
+        addline(2)
+
+        # draw the winning ticket
+        drawing_pool = []
+        for drawable_number in range(1,81,1):
+            drawing_pool.append(drawable_number)
+        ticket = []
+        random.seed(seed.value)
+        for drawed_number in range(1,21,1):
+            drawed_number = random.choice(drawing_pool)
+            ticket.append(drawed_number)
+            drawing_pool.remove(drawed_number)
+        ticket.sort()
+        # make my panel
+        panel = []
+        for i in range (0,80,1):
+            panel.append("--")
+        # magic
+        for i in range(0,20,1):
+            ticket[i] = ticket[i] - 1
+            panel.pop(ticket[i])
+            ZIP = ticket[i] + 1
+            if ZIP < 10:
+                ZIP = str(ZIP)
+                ZIP = "-" + ZIP
+            elif ZIP > 9:
+                ZIP = str(ZIP)
+            panel.insert(ticket[i],ZIP)
+        # dress the magic
+        counter = 1
+        for i in range(0,80,1):
+            counter = counter + 1
+            print(panel[i],sep="",end=" ")
+            if counter == 11:
+                counter = 1
+                print("\n",sep="",end="")
+
+        
+
+        addline(8)
+        menu()
+
+
 # ------------------------------------------
 # EDIT SEED
 # ------------------------------------------
@@ -347,26 +341,36 @@ def main():
         ISSUE #5
         IncompatableInput #5
         """
-
         addline(8)
         addspace(8)
         # put current seed to old seed var
         seed.oldseed = seed.value
         if seed.oldseed == seed.value:
-            print('$')
+            print('')
         else:
-            print('%')
+            print('')
         # ?set something to true
         addline()
         addspace(8)
+        print(f"Current Seed: {seed.value}")
+        addspace(8)
         print("ENTER NEW SEED")
         addline(4)
-        try:
-            userseed = input("NEW SEED: ")
-        finally:
+        addspace(8)
+        userseed = input("NEW SEED: ")
+        if userseed == 'first draw':
             userseed = first_draw
-        #unix_ts = userseed
-        #seed.as_datetime = datetime.datetime.timestamp(unix_ts)
+        seed.value = userseed
+        seed.newseed = seed.value
+        seed.as_datetime = datetime.datetime.fromtimestamp(int(seed.value))
+        addline(4)
+        addspace(8)
+        print(f"New Current Seed: {seed.value} ")
+        addspace(8)
+        print("DATETIME:", seed.as_datetime)
+        addline(2)
+        addspace(8)
+        prompt = input("Return...")
         addline(15)
         cls()
         homecard()
@@ -513,7 +517,7 @@ def main():
         print(f"seed: {seed.value}", end=' ')
         addline()
         addspace(8)
-        seed.as_datetime = datetime.datetime.fromtimestamp(seed.value)
+        seed.as_datetime = datetime.datetime.fromtimestamp(int(seed.value))
         print(f"Datetime: {seed.as_datetime}")
      
   

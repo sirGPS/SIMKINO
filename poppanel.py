@@ -41,12 +41,12 @@ def popPanel():
             ZIP = str(ZIP)
         Panel.insert(Ticket[i],ZIP)
     # dress the magic stuff here
-    c = 1
+    counter = 1
     for i in range(0,80,1):       
-        c = c + 1
+        counter = counter + 1
         print(Panel[i],sep ="", end=" ")
-        if c == 11:
-            c = 1
+        if counter == 11:
+            counter = 1 # reset counter
             print("\n",sep="",end="")
 # entry point
 if __name__ == "__main__":
