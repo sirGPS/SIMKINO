@@ -118,12 +118,12 @@ def main():
         print("SEED CARD")
         addline(3)
         addspace(8)
-        print("SEED: ", seed.value)
+        print(f"SEED: {seed.value}")
         addline()
         addspace(8)
         # print the datetime from seed
         seed.as_datetime = datetime.datetime.fromtimestamp(int(seed.value))
-        print("DATETIME:", seed.as_datetime)
+        print(f"DATETIME: {seed.as_datetime}")
         addline(8)
         menu()
 # ------------------------------------------
