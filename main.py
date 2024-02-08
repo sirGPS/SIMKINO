@@ -26,6 +26,7 @@ import poppanel
 # import sector
 import secrets
 import datetime
+import pendulum
 import random
 import time
 #from time import sleep
@@ -80,6 +81,7 @@ seed = Cseed(first_draw) # time of first draw
 # Variables
 now = int(time.time())
 dt = datetime.datetime.fromtimestamp(now)
+tz = pendulum.timezone('Europe/Athens') # Patras Local Time
 user_datetime = 0
 unix_timestamp = 0
 # space = 32
@@ -123,6 +125,7 @@ def main():
         addspace(8)
         # print the datetime from seed
         seed.as_datetime = datetime.datetime.fromtimestamp(int(seed.value))
+        seed.as_datetime = tz.convert(seed.as_datetime)
         print(f"DATETIME: {seed.as_datetime}")
         addline(8)
         menu()
@@ -182,6 +185,7 @@ def main():
         addline()
         addspace(8)
         seed.as_datetime = datetime.datetime.fromtimestamp(seed.value)
+        seed.as_datetime = tz.convert(seed.as_datetime)
         print("SEED AS DATETIME:", seed.as_datetime)
         addline(2)
         # PRINT number 1 to 80 in a rect
@@ -234,6 +238,7 @@ def main():
         addline()
         addspace(8)
         seed.as_datetime = datetime.datetime.fromtimestamp(int(seed.value))
+        seed.as_datetime = tz.convert(seed.as_datetime)
         print("DATETIME:", seed.as_datetime)
         addline(2)
         # define draw
@@ -283,6 +288,7 @@ def main():
         addline()
         addspace(8)
         seed.as_datetime = datetime.datetime.fromtimestamp(int(seed.value))
+        seed.as_datetime = tz.convert(seed.as_datetime)
         print(f"Datetime is:{seed.as_datetime}")
         addline(2)
 
@@ -363,6 +369,7 @@ def main():
         seed.value = userseed
         seed.newseed = seed.value
         seed.as_datetime = datetime.datetime.fromtimestamp(int(seed.value))
+        seed.as_datetime = tz.convert(seed.as_datetime)
         addline(4)
         addspace(8)
         print(f"New Current Seed: {seed.value} ")
@@ -531,6 +538,7 @@ def main():
         addline()
         addspace(8)
         seed.as_datetime = datetime.datetime.fromtimestamp(int(seed.value))
+        seed.as_datetime = tz.convert(seed.as_datetime)
         print(f"Datetime: {seed.as_datetime}")
      
   
@@ -634,4 +642,8 @@ def main():
 # MAIN
 # ------------------------------------------
 # call main
-main()  # * formely mainmenu()
+# * formely mainmenu()
+
+# entry point
+if __name__ == "__main__":
+    main()

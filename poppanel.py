@@ -10,7 +10,11 @@
 # import
 import requests
 import simplejson as json
+import pendulum
+from datetime import datetime 
 # 
+
+tz = pendulum.timezone('Europe/Athens')
 def popPanel():
     # request data
     KINODATA = "https://api.opap.gr/draws/v3.0/1100/last-result-and-active"
@@ -18,12 +22,20 @@ def popPanel():
     if response.status_code == 200:
         json_data = response.json()
         winningNumbers = json_data['last']['winningNumbers']['list']
+        drawTime = json_data['last']['drawTime']
+        drawId = json_data['last']['drawId']
         winningTicket = json.loads(str(winningNumbers))
         winningTicket.sort()
     else:
         print(f"Error: {response.status_code}")
     Ticket = winningTicket
-    
+    drawTime = drawTime / 1000
+    drawTime = datetime.fromtimestamp(int(drawTime))
+    tz.convert(drawTime)
+    print("\n")
+    print(f"Draw Id: {drawId}")
+    print(f"Draw Time: {drawTime}")
+    print("\n")
     # Make a panel array
     Panel = []
     for i in range(0,80,1):

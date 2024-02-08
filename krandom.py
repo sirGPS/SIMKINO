@@ -20,3 +20,7 @@ def fake_fortuna():
     print("Random Data:",random_data.hex())
     random_number = secrets.randbelow(100) + 1
     print("Random number: ",random_number)
+
+# entry point
+if __name__ == "__main__":
+    fake_random()
