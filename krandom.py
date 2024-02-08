@@ -13,9 +13,8 @@ def fake_print():
     FAKE_IS_READ = 1
 def fake_random(seed = 1682952000000,modulus = 50 ,increment= 3,multip= 777666777) -> Generator[int, None, None] :
     """ PSEVDORANDOM GENERATOR """
-    while True:
-        seed = (multip * seed + increment) % modulus
-        print("FAKE_RANDOM SEED: ",seed)
+    seed = (multip * seed + increment) % modulus
+    print("FAKE_RANDOM SEED: ",seed)
 def fake_fortuna():
     random_data = secrets.token_bytes(16)
     print("Random Data:",random_data.hex())

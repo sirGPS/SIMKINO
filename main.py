@@ -161,7 +161,7 @@ def main():
 # ------------------------------------------
     # clear the screen
     def cls():
-        addline(25)
+        addline()
     # def waitkey():
         # hold execution
         # UNUSED
@@ -323,7 +323,7 @@ def main():
 
         
 
-        addline(8)
+        addline()
         menu()
 
 
@@ -437,15 +437,28 @@ def main():
         addspace(8)
         try:
             newmin = int(input(f"new min ({oldmin}):  "))
+
         except:
-            if oldmin / 5 == range(0,11):
-                oldmin = (abs(int(oldmin))*5)
-            else:
-                oldmin = (abs(int(oldmin/5))*5)+5
-                if (oldmin > 55):
-                    oldmin = 0
-                    oldhour = oldhour + 1
             newmin = int(oldmin)
+
+
+            if newmin < 55:
+                if newmin / 5 == range(0,11):
+                    newmin = (abs(int(newmin))*5)
+                else:
+                    newmin = (abs(int(newmin/5))*5)
+            elif newmin > 55:
+                    # todo: shift to 55 min
+                newmin = 55
+
+                newmin = int(newmin)
+                
+
+
+        if newmin > 55:
+            newmin = 55
+            
+
         new_user_datetime = datetime.datetime(
             newyear, newmonth, newday, newhour, newmin)
         user_datetime = datetime.datetime.timestamp(new_user_datetime)
@@ -550,7 +563,7 @@ def main():
         print("X: SECRET RANDOM FUNCTION")
         addline()
         addspace(8)
-        print("L: Show Last and Active KINO Draw")
+        print("F: Show Last and Active KINO Draw")
         addline(3)
         
 # ------------------------------------------
@@ -590,13 +603,14 @@ def main():
         if (user == 't'):
             cls()
             edittime()
-        if (user == 'l'):
-            addline()
+        if (user == 'f'):
+            cls()
             print("KINO: Last Draw and Active Draw")
-            addline(3)
+            addline()
             poppanel.popPanel()
-            addline(3)
-            prompt = input("Return...") # press any key..
+            addline()
+            menu()
+            #prompt = input("") # press any key..
         if (user == 'h'):
             cls()
             homecard()
@@ -611,8 +625,8 @@ def main():
             cls()
             homecard()
             menu()
-    cls()
-    homecard()
+    #cls()
+    #homecard()
     menu()
 
 
