@@ -19,6 +19,9 @@ TODO: Use the milliseconds format to be in par with opap kino system
 5 -> ECHO NOW VALUE
 TODO: output to console the now value for testing purpuses
 
+6 -> REmove pendulum
+TODO: remove pendulum references and code
+HIGH PRIORITY
 
 Note -> First KINO DRAW
 2,5,7,8,22,33,38,44,46,52,54,55,56,58,62,63,66,72,74,78

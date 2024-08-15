@@ -20,13 +20,23 @@ MODULE_IS_READ = MODULE_IS_READ + 1
 # ------------------------------------------
 # IMPORT
 # ------------------------------------------
+# 
+# OP KILL PENDULUM
+# Note: Remove Pendulum 
+# Reason: Pendulum dependencys do not install on android
+# Replace Pendulum with standard timezone reference
+
+
 
 import krandom
 import poppanel
 # import sector
 import secrets
 import datetime
-import pendulum
+from datetime import datetime, timezone, timedelta
+# p ------------
+# import pendulum
+# ---------------
 import random
 import time
 #from time import sleep
@@ -80,8 +90,11 @@ first_draw = 1067855400
 seed = Cseed(first_draw) # time of first draw
 # Variables
 now = int(time.time())
-dt = datetime.datetime.fromtimestamp(now)
-tz = pendulum.timezone('Europe/Athens') # Patras Local Time
+dt = datetime.fromtimestamp(now)
+# p -------------------------------------------------------
+tz = timezone(timedelta(hours=3)) # Patras Local Timezone
+# tz = pendulum.timezone('Europe/Athens') # Patras Local Time
+# ----------------------------------------------------------
 user_datetime = 0
 unix_timestamp = 0
 # space = 32
@@ -124,8 +137,10 @@ def main():
         addline()
         addspace(8)
         # print the datetime from seed
-        seed.as_datetime = datetime.datetime.fromtimestamp(int(seed.value))
-        seed.as_datetime = tz.convert(seed.as_datetime)
+        seed.as_datetime = datetime.fromtimestamp(int(seed.value))
+        # p ---------------------------------------------
+        # seed.as_datetime = tz.convert(seed.as_datetime)
+        # -----------------------------------------------
         print(f"DATETIME: {seed.as_datetime}")
         addline(8)
         menu()
@@ -184,8 +199,10 @@ def main():
         print("Seed: ", seed.value)
         addline()
         addspace(8)
-        seed.as_datetime = datetime.datetime.fromtimestamp(seed.value)
-        seed.as_datetime = tz.convert(seed.as_datetime)
+        seed.as_datetime = datetime.fromtimestamp(seed.value)
+        # p --------------------------------------------
+        # seed.as_datetime = tz.convert(seed.as_datetime)
+        # ----------------------------------------------
         print("SEED AS DATETIME:", seed.as_datetime)
         addline(2)
         # PRINT number 1 to 80 in a rect
@@ -237,8 +254,10 @@ def main():
         print("SEED: ", seed.value)
         addline()
         addspace(8)
-        seed.as_datetime = datetime.datetime.fromtimestamp(int(seed.value))
-        seed.as_datetime = tz.convert(seed.as_datetime)
+        seed.as_datetime = datetime.fromtimestamp(int(seed.value))
+        # p ---------------------------------------------
+        # seed.as_datetime = tz.convert(seed.as_datetime)
+        # ------------------------------------------------
         print("DATETIME:", seed.as_datetime)
         addline(2)
         # define draw
@@ -287,8 +306,10 @@ def main():
         print(f"Seed is:{seed.value}")
         addline()
         addspace(8)
-        seed.as_datetime = datetime.datetime.fromtimestamp(int(seed.value))
-        seed.as_datetime = tz.convert(seed.as_datetime)
+        seed.as_datetime = datetime.fromtimestamp(int(seed.value))
+        # p --------------------------------------------
+        # seed.as_datetime = tz.convert(seed.as_datetime)
+        # ----------------------------------------------
         print(f"Datetime is:{seed.as_datetime}")
         addline(2)
 
@@ -368,8 +389,10 @@ def main():
             userseed = first_draw
         seed.value = userseed
         seed.newseed = seed.value
-        seed.as_datetime = datetime.datetime.fromtimestamp(int(seed.value))
-        seed.as_datetime = tz.convert(seed.as_datetime)
+        seed.as_datetime = datetime.fromtimestamp(int(seed.value))
+        # p -------------------------------------------
+        # seed.as_datetime = tz.convert(seed.as_datetime)
+        # ---------------------------------------------
         addline(4)
         addspace(8)
         print(f"New Current Seed: {seed.value} ")
@@ -404,11 +427,11 @@ def main():
 
         # datetime get
         old_datetime = time.time()
-        old_datetime = datetime.datetime.fromtimestamp(old_datetime)
+        old_datetime = datetime.fromtimestamp(old_datetime)
         #print("OLD_DATETIME: ",old_datetime)
         #print("\nOLD_MINUTE:", old_datetime.minute)
         #
-        #datetime.datetime()
+        #datetime()
 
         oldyear = old_datetime.year
         oldmonth = old_datetime.month
@@ -466,12 +489,12 @@ def main():
             newmin = 55
             
 
-        new_user_datetime = datetime.datetime(
+        new_user_datetime = datetime(
             newyear, newmonth, newday, newhour, newmin)
-        user_datetime = datetime.datetime.timestamp(new_user_datetime)
+        user_datetime = datetime.timestamp(new_user_datetime)
         addspace(8)
         addline()
-        unix_timestamp = datetime.datetime.timestamp(new_user_datetime)
+        unix_timestamp = datetime.timestamp(new_user_datetime)
         addspace(8)
 
 
@@ -483,7 +506,7 @@ def main():
 
         # pass this as UNIX stamp in the seed section
         # waitkey()
-        # newtime = datetime.datetime.strftime("%y %m %d %H %M")
+        # newtime = datetime.strftime("%y %m %d %H %M")
         # qdate = newtime
         # print(qdate)
 
@@ -537,9 +560,13 @@ def main():
         print(f"seed: {seed.value}", end=' ')
         addline()
         addspace(8)
-        seed.as_datetime = datetime.datetime.fromtimestamp(int(seed.value))
-        seed.as_datetime = tz.convert(seed.as_datetime)
+        seed.as_datetime = datetime.fromtimestamp(int(seed.value))
+        # p ---------------------------------------------
+        # seed.as_datetime = tz.convert(seed.as_datetime)
+        # -----------------------------------------------
         print(f"Datetime: {seed.as_datetime}")
+
+        
      
   
         addline(2)
