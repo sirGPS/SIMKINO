@@ -10,11 +10,15 @@
 # import
 import requests
 import simplejson as json
-import pendulum
-from datetime import datetime 
+
+# import pendulum
+from datetime import datetime, timezone, timedelta 
 # 
 
-tz = pendulum.timezone('Europe/Athens')
+#tz = pendulum.timezone('Europe/Athens')
+
+tz = timezone(timedelta(hours=3))
+
 def popPanel():
     # request data
     KINODATA = "https://api.opap.gr/draws/v3.0/1100/last-result-and-active"
@@ -31,7 +35,6 @@ def popPanel():
     Ticket = winningTicket
     drawTime = drawTime / 1000
     drawTime = datetime.fromtimestamp(int(drawTime))
-    tz.convert(drawTime)
     print("\n")
     print(f"Draw Id: {drawId}")
     print(f"Draw Time: {drawTime}")
